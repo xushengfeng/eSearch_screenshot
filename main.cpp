@@ -12,11 +12,9 @@ int main(int argc, char *argv[])
     QList<QScreen *> screen_list= QGuiApplication::screens();
        for(int i=0;i<screen_list.count();i++)
        {
-           qDebug()<<screen_list.at(0)->geometry();
+           qDebug()<<screen_list.at(i)->geometry();
+           screen_list.at(i)->grabWindow(0).save(QString::number(i),"png");
        }
-
-    QScreen *screen = QApplication::primaryScreen();
-    screen->grabWindow(0).save("123","png");
 //    w.show();
     return a.exec();
 }
