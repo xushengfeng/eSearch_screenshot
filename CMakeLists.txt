@@ -56,3 +56,5 @@ set_target_properties(eSearch_screensot PROPERTIES
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(eSearch_screensot)
 endif()
+
+target_link_libraries(eSearch_screensot PRIVATE X11)
