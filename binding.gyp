@@ -2,7 +2,7 @@
     "targets": [
         {
             "target_name": "eSearch_screenshot",
-            "sources": ["main.cpp"]
+            "sources": ["main.cc"]
         }
     ]
 }

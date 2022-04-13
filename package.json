@@ -1,0 +1,21 @@
+{
+  "name": "esearch_screenshot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "node-gyp rebuild"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xushengfeng/eSearch_screenshot.git"
+  },
+  "author": "",
+  "license": "GPL-3.0",
+  "gypfile": true,
+  "bugs": {
+    "url": "https://github.com/xushengfeng/eSearch_screenshot/issues"
+  },
+  "homepage": "https://github.com/xushengfeng/eSearch_screenshot#readme"
+}
