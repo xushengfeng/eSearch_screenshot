@@ -2,7 +2,28 @@
     "targets": [
         {
             "target_name": "eSearch_screenshot",
-            "sources": ["main.cc"]
+            "cflags": ["-Wall", "-std=c++11"],
+            "conditions":[
+                ["OS=='linux'", {
+                    "sources": ["linux.cc"]
+                }],
+                ["OS=='mac'", {
+                    "sources": ["macos.cc"]
+                }],
+                ["OS=='win'", {
+                    "sources": ["windows.cc"]
+                }]
+            ],
+            "xcode_settings": {
+                "OTHER_CFLAGS": [
+                    "-std=c++11"
+                ]
+            },
+            "msvs_settings": {
+                "VCCLCompilerTool": {
+                    "ExceptionHandling": "1 # /EHsc"
+                }
+            },
         }
     ]
 }
