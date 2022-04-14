@@ -140,7 +140,9 @@ namespace demo
                 Local<Number> h = Number::New(isolate, hh);
                 screen->Set(context, String::NewFromUtf8(isolate, "width").ToLocalChecked(), w).FromJust();
                 screen->Set(context, String::NewFromUtf8(isolate, "height").ToLocalChecked(), h).FromJust();
-                std::list<int> l;
+                long li = 0;
+                int l[attrs.height * attrs.width * 4 + 1];
+                // std::list<int>l;
                 int x, y;
                 unsigned long red_mask = pImage->red_mask;
                 unsigned long green_mask = pImage->green_mask;
@@ -153,19 +155,28 @@ namespace demo
                         unsigned int blue = pixel & blue_mask;
                         unsigned int green = (pixel & green_mask) >> 8;
                         unsigned int red = (pixel & red_mask) >> 16;
-                        l.push_back(red);
-                        l.push_back(green);
-                        l.push_back(blue);
+                        l[li] = red;
+                        l[li + 1] = blue;
+                        l[li + 2] = green;
+                        l[li + 3] = 255;
+                        li += 4;
+                        // l.push_back(red);
+                        // l.push_back(green);
+                        // l.push_back(blue);
+                        // l.push_back(255);
                     }
                 }
-                Local<ArrayBuffer> img_b = ArrayBuffer::New(isolate, l.size());
-                memcpy(img_b->GetContents().Data(), &l, l.size());
-                Local<Uint8ClampedArray> img = Uint8ClampedArray::New(img_b, l.size(), l.size());
+                // int l[] = {255, 255, 1};
+                void *temp = l;
+                Local<ArrayBuffer> img_b = ArrayBuffer::New(isolate, temp, li);
+                // ArrayBuffer::New(isolate, 0);
+                // memcpy(img_b->GetContents().Data(), l, 1);
+                Local<Uint8ClampedArray> img = Uint8ClampedArray::New(img_b, 0, li);
                 // Local<Number> img = Number::New(isolate, i);
-                screen->Set(context, String::NewFromUtf8(isolate, "img").ToLocalChecked(), img_b).FromJust();
 
+                screen->Set(context, String::NewFromUtf8(isolate, "img").ToLocalChecked(), img).FromJust();
                 obj->Set(context, i, screen).FromJust();
-                l.clear();
+                // l.clear();
                 i++;
             }
 
