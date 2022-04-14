@@ -41,6 +41,17 @@ namespace demo
 #if defined IS_WINDOWS
 #elif defined IS_MACOS
 #elif defined IS_LINUX
+		FILE *fp;
+		char buffer[4];
+		fp = popen("echo $XDG_SESSION_TYPE", "r");
+		fgets(buffer, sizeof(buffer), fp);
+		if (*buffer == *"x11") // x11
+		{
+		}
+		else // wayland
+		{
+		}
+		pclose(fp);
 #endif
 
 		args.GetReturnValue().Set(obj);
