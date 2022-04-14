@@ -5,7 +5,15 @@
             "cflags": ["-Wall", "-std=c++11"],
             "conditions":[
                 ["OS=='linux'", {
-                    "sources": ["linux.cc"]
+                    "sources": ["linux.cc"],
+                    'link_settings': {
+                        'libraries': [
+                            '-lpng',
+                            '-lz',
+                            '-lX11',
+                            '-lXtst'
+                        ]
+                    },
                 }],
                 ["OS=='mac'", {
                     "sources": ["macos.cc"]

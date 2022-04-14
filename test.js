@@ -1,2 +1,2 @@
 const ss = require("./build/Release/eSearch_screenshot");
-console.log(ss.capture(0));
+console.log(ss.capture());
