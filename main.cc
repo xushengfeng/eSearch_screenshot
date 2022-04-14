@@ -1,5 +1,6 @@
 #include <node.h>
 #include <v8.h>
+#include "os.h"
 
 namespace demo
 {
@@ -37,18 +38,10 @@ namespace demo
 
 		obj->Set(context, 0, screen).FromJust();
 
-		if (p == 0) //"win"
-		{
-		}
-		else if (p == 1) //"x11"
-		{
-		}
-		else if (p == 2) //"wayland"
-		{
-		}
-		else if (p == 3) //"mac"
-		{
-		}
+#if defined IS_WINDOWS
+#elif defined IS_MACOS
+#elif defined IS_LINUX
+#endif
 
 		args.GetReturnValue().Set(obj);
 	}
